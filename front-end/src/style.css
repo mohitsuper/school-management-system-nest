@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  /* Responsive Heading */
+  .header-heading {
+    @apply font-bold text-indigo-600 text-xl;
+  }
+
+  @screen lg {
+    .header-heading {
+      @apply text-2xl;
+    }
+  }
+
+  @screen xl {
+    .header-heading {
+      @apply text-3xl;
+    }
+  }
+
+  /* Primary Button with Gradient */
+  .btn-primary {
+    @apply !px-6 !py-3 rounded-full text-sm font-medium text-white shadow-lg !border-0
+           !bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+           transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply shadow-xl ;
+  }
+
+  .btn-primary:focus {
+    @apply outline-none ring-2 ring-indigo-400;
+  }
+
+  /* Gradient Divider */
+  .divider {
+    @apply h-[2px] w-full mb-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+  }
+
+}

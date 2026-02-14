@@ -1,0 +1,1 @@
+export const adminHashKey = "admin12345";

@@ -50,6 +50,7 @@
       responsiveLayout="scroll"
       class="rounded-xl overflow-hidden border border-gray-200"
       paginatorClass="px-4 py-3 bg-gray-50 border-t"
+      v-model:selection="selectionData"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column
@@ -85,7 +86,7 @@ import Column from "primevue/column";
 import InputText from "primevue/inputtext";
 import { Dropdown } from "primevue";
 
-const emit = defineEmits(['update:search'])
+const emit = defineEmits(['update:search','selectionData'])
 
 const searchTerm = ref("");
 const handelSearch = (e: Event) => {
@@ -99,11 +100,13 @@ const handletoogleSearch = () => {
   toggleSearch.value = !toggleSearch.value;
 };
 
-const props = defineProps({
-  data: [],
-  columns: [],
-  actions: [],
-});
+const selectionData = ref<any>();
+
+const props = defineProps<{
+  data: any[]
+  columns: any[]
+  actions: any[]
+}>()
 const columns = computed(() => props.columns);
 
 watch(selectAction, (newAction) => {

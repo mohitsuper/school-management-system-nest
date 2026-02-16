@@ -28,14 +28,14 @@
   </div>
 </template>
 <script setup>
-import { computed, ref } from "vue";
+import { computed, markRaw, ref } from "vue";
 import { useRouter } from "vue-router";
 import TeachersView from "../components/TeachersView.vue";
 import SubjectView from "../components/SubjectView.vue";
 const router = useRouter();
 
 const activeTab = ref("teachers");
-const tabs = ref([
+const tabs = ref(markRaw([
   {
     title: "Teachers List",
     name: "teachers",
@@ -52,7 +52,7 @@ const tabs = ref([
     button: "Create new subject",
     router: "create.subject",
   },
-]);
+]));
 
 const currentTab = computed(
   () => tabs.value.find((tab) => tab.name == activeTab.value).component,

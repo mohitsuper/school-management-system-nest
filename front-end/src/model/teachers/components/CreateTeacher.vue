@@ -12,7 +12,7 @@
 
     <div class="divider"></div>
     <div class="bg-white p-6 shadow-lg rounded-xl">
-      <form @submit.prevent="handleSubmit" class="grid md:grid-cols-2 gap-4">
+      <form  class="grid md:grid-cols-2 gap-4">
         <!-- Name Field -->
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium" for="name">Name</label>
@@ -53,15 +53,17 @@
         <!-- Submit Button -->
       </form>
       <div class="flex w-full mt-6">
-        <Button label="Submit" type="submit" class="btn-primary" />
+        <Button label="Submit" type="submit" @click="handleSubmit" class="btn-primary" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import { useTeachersStore } from "../store/TeachersStore";
+const teacherStore = useTeachersStore();
 const router = useRouter();
 const form = reactive({
   name: "",
@@ -69,11 +71,10 @@ const form = reactive({
   subject: "",
 });
 
-const handleSubmit = () => {
-  console.log("Form Data:", form);
-  alert(
-    `Submitted:\nName: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject}`,
-  );
+
+const handleSubmit = async () => {
+  await teacherStore.createTeacher(form);
+  router.push({name:'teachers.index'})
 };
 </script>
 

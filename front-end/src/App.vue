@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen flex flex-col bg-gray-100">
-
+    <Toast/>
     <!-- 🔵 Header -->
     <Header v-if="$route.meta.layout" @menu="handelmenu" />
 
@@ -32,6 +32,7 @@ import { ref } from 'vue';
 import Footer from './commen/Footer.vue'
 import Header from './commen/Header.vue'
 import Sidebar from './commen/Sidebar.vue'
+import Toast from "primevue/toast";
 const openToggle = ref(false);
 function handelmenu(val) {
   openToggle.value = val;

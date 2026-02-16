@@ -12,7 +12,8 @@ import 'primeicons/primeicons.css'
 import { Button, InputText } from 'primevue'
 import { createPinia } from 'pinia'
 
-
+import ToastService from "primevue/toastservice";
+import Toast from "primevue/toast";
 
 const app = createApp(App)
 app.use(PrimeVue, {
@@ -22,6 +23,10 @@ app.use(PrimeVue, {
 })
 app.component('InputText',InputText)
 app.use(createPinia())
+app.use(ToastService);
+
+app.component("Toast", Toast);
+
 app.use(router);
 app.component('Button', Button)
 app.mount('#app');

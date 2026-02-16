@@ -9,16 +9,15 @@
         @click="router.push({ name: 'teachers.index' })"
       />
     </div>
-
     <div class="divider"></div>
     <div class="bg-white p-6 shadow-lg rounded-xl">
-      <form @submit.prevent="handleSubmit" class="grid md:grid-cols-2 gap-4">
+      <form  class="grid md:grid-cols-2 gap-4">
         <!-- Name Field -->
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium" for="name">Name</label>
           <InputText
             id="name"
-            v-model="form.name"
+            v-model="teacherSchema.name"
             placeholder="Enter your name"
             class="p-inputtext p-component w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
@@ -31,7 +30,7 @@
           >
           <InputText
             id="email"
-            v-model="form.email"
+            v-model="teacherSchema.email"
             placeholder="Enter your email"
             class="p-inputtext p-component w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
@@ -44,7 +43,7 @@
           >
           <InputText
             id="subject"
-            v-model="form.subject"
+            v-model="teacherSchema.subject"
             placeholder="Enter subject"
             class="p-inputtext p-component w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
@@ -53,16 +52,20 @@
         <!-- Submit Button -->
       </form>
       <div class="flex w-full mt-6">
-        <Button label="Submit" type="submit" class="btn-primary" />
+        <Button label="Submit" type="submit" @click="handleUpdate" class="btn-primary" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
+import { computed, onMounted, reactive } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useTeachersStore } from "../store/TeachersStore";
 const router = useRouter();
+const route = useRoute()
+const teachersStore = useTeachersStore();
+const teacherSchema = computed(()=>teachersStore.teacherSchema)
 const form = reactive({
   name: "",
   email: "",
@@ -75,6 +78,14 @@ const handleSubmit = () => {
     `Submitted:\nName: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject}`,
   );
 };
+
+const handleUpdate =async ()=>{
+  await teachersStore.updateTeacher(route.params.id,teacherSchema);
+}
+
+onMounted(async()=>{
+  await teachersStore.getTeacherById(route.params.id);
+})
 </script>
 
 <style scoped>

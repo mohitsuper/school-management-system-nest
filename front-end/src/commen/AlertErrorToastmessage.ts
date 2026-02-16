@@ -1,4 +1,4 @@
-export const AlertErrorToastmessae = (toast: any, error?: any) => {
+export const AlertErrorToastmessage = (toast: any, error?: any) => {
     const message =
         error?.response?.data?.message || "Something went wrong";
     if (Array.isArray(error?.response?.data?.message)) {

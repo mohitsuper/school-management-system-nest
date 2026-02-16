@@ -22,7 +22,7 @@ export const teachersRoute = [
         }
     },
     {
-        path:`/${adminHashKey}/update/teacher`,
+        path:`/${adminHashKey}/update/teacher/:id`,
         name:'update.teacher',
         component:UpdateTeacher,
         meta:{

@@ -86,7 +86,7 @@ import Column from "primevue/column";
 import InputText from "primevue/inputtext";
 import { Dropdown } from "primevue";
 
-const emit = defineEmits(['update:search','selectionData'])
+const emit = defineEmits(['update:search','update:selectionData'])
 
 const searchTerm = ref("");
 const handelSearch = (e: Event) => {
@@ -100,8 +100,10 @@ const handletoogleSearch = () => {
   toggleSearch.value = !toggleSearch.value;
 };
 
-const selectionData = ref<any>();
-
+const selectionData = ref<any>([]);
+watch(selectionData,(val)=>{
+  emit('update:selectionData',val)
+})
 const props = defineProps<{
   data: any[]
   columns: any[]

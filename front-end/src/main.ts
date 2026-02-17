@@ -9,7 +9,7 @@ import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 
 import 'primeicons/primeicons.css'
-import { Button, InputText } from 'primevue'
+import { Button, Dialog, InputText } from 'primevue'
 import { createPinia } from 'pinia'
 
 import ToastService from "primevue/toastservice";
@@ -26,7 +26,7 @@ app.use(createPinia())
 app.use(ToastService);
 
 app.component("Toast", Toast);
-
+app.component("Dialog",Dialog)
 app.use(router);
 app.component('Button', Button)
 app.mount('#app');

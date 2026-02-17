@@ -56,11 +56,32 @@ export const useTeachersStore = defineStore('teachers', () => {
 
     const updateTeacher = async (id: string,data:{ email: string, subject: string, name: string }) => {
         try {
-            await axiosInstance.patch(`/teacher/${id}`,{...data});
+            await axiosInstance.patch(`/teacher/${id}`,data);
             toast.add({
                 severity:'success',
                 summary:'Success',
-                detail:'Update teacher successfull'
+                detail:'Update teacher successfull',
+                life:3000
+            })
+            teacherSchema.value = {
+                name:'',
+                email:'',
+                subject:'',
+            }
+        }
+        catch (error) {
+            AlertErrorToastmessage(toast, error)
+        }
+    }
+
+    const deleteTeacher = async (id: string) => {
+        try {
+            await axiosInstance.patch(`/teacher/${id}`);
+            toast.add({
+                severity:'success',
+                summary:'Success',
+                detail:'Delete teacher successfull',
+                life:3000
             })
             teacherSchema.value = {
                 name:'',
@@ -78,7 +99,8 @@ export const useTeachersStore = defineStore('teachers', () => {
         createTeacher,
         getTeacherById,
         teacherSchema,
-        updateTeacher
+        updateTeacher,
+        deleteTeacher
     }
 
 })

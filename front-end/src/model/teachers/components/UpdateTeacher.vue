@@ -80,7 +80,8 @@ const handleSubmit = () => {
 };
 
 const handleUpdate =async ()=>{
-  await teachersStore.updateTeacher(route.params.id,teacherSchema);
+  await teachersStore.updateTeacher(route.params.id,teacherSchema.value);
+  router.push({name:'teachers.index'})
 }
 
 onMounted(async()=>{

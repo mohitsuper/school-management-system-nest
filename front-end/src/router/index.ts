@@ -4,6 +4,7 @@ import Error404 from "../view/Error404.vue";
 import  { adminDashboardRouter } from "../model/dashboard/router";
 import { authRouter } from "../model/auth/router";
 import { teachersRoute } from "../model/teachers/router";
+import { ClassSubjectManagementRouter } from "../model/class-Subject-management/router";
 
 const globleRoutes = [
     {
@@ -28,7 +29,8 @@ const routes = [
     ...globleRoutes,
     ...adminDashboardRouter,
     ...authRouter,
-    ...teachersRoute
+    ...teachersRoute,
+    ...ClassSubjectManagementRouter
 ]
 
 

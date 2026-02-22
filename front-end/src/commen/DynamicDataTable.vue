@@ -33,6 +33,7 @@
             dropdownIcon="pi pi-ellipsis-h"
             class="py-3"
           >
+
             <template #option="slotProps">
               <i :class="slotProps.option.icon"></i>
               <span class="ml-2">{{ slotProps.option.name }}</span>
@@ -53,14 +54,31 @@
       v-model:selection="selectionData"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column
-        v-for="(col, index) in columns"
+      <div  v-for="(col, index) in columns">
+        <Column v-if="col.slot"
         :key="index"
-        :field="col.field"
-        :header="col.header"
-        headerClass="bg-gray-100 text-gray-700 font-semibold text-sm uppercase tracking-wide"
-        bodyClass="text-gray-600 text-sm py-3"
-      />
+          :field="col.field"
+          :header="col.header"
+        >
+  <template #body="slotProps">
+    <slot
+      :name="col.slot"
+      :data="slotProps.data"
+      :row="slotProps.data"
+    ></slot>
+  </template>
+      </Column>
+
+        <Column 
+          :key="index"
+          :field="col.field"
+          :header="col.header"
+          headerClass="bg-gray-100 text-gray-700 font-semibold text-sm uppercase tracking-wide"
+          bodyClass="text-gray-600 text-sm py-3"
+        />
+
+      </div>
+
 
       <template #paginatorstart>
         <span class="text-sm text-gray-500 font-medium">

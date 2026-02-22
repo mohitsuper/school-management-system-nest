@@ -10,5 +10,10 @@ export const AdminNavLinks = [
         path:`/${adminHashKey}/teachers`,
         icon:'pi pi-id-card',
         name:'Teachers'
+    },
+    {
+        path:`/${adminHashKey}/class-subject-management`,
+        icon:'pi pi-id-card',
+        name:'Class & Subject Management'
     }
 ]

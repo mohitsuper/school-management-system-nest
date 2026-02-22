@@ -1,0 +1,336 @@
+school managemnt software flow 
+main features
+    1. auth system
+    2. class & subject managemnt
+    3. student managemnt
+    4. teacher managemnt
+    5. exam managemnt
+    6. role base
+    7. attudences 
+    8. salery managemnt
+    9. reports
+    10. fees system
+
+roles
+   * admin
+   * student
+   * teacher
+   * accountent
+
+admin powers
+    1. teacher view edit create delete
+    2. teacher salery view 
+    3. school student performence view 
+    4. school student fees
+    5. teacher salery managemnt
+    6. student & teacher both persent or view 
+    7. notice or create
+    8. exames 
+
+teacher powers
+
+
+
+
+
+
+🏫 School Management Software – Complete Flow
+🔐 1. Auth System (Login / Register)
+Flow:
+
+User login karega (email + password)
+
+Backend JWT token generate karega
+
+Role check hoga (admin / teacher / student / accountant)
+
+Role ke hisaab se dashboard open hoga
+
+Roles:
+
+Admin
+
+Teacher
+
+Student
+
+Accountant
+
+👉 Har role ka alag dashboard & permissions honge.
+
+🧑‍💼 Role Based Access Control (RBAC)
+
+Backend me middleware/guard lagega:
+
+Example:
+
+@Roles('admin')
+
+@Roles('teacher')
+
+Frontend me:
+
+Sidebar menu role ke hisaab se show hoga
+
+🏢 Main Modules Flow
+1️⃣ Class & Subject Management
+Admin Can:
+
+Class create kare (Class 1, Class 2)
+
+Subject add kare (Math, Science)
+
+Subject ko class se assign kare
+
+Teacher assign kare subject me
+
+Flow:
+
+Admin → Create Class → Add Subjects → Assign Teacher
+
+2️⃣ Student Management
+Admin:
+
+Student add/edit/delete
+
+Student ko class assign
+
+Parent details add
+
+Student fees record
+
+Teacher:
+
+Apne class ke students dekh sakta hai
+
+Performance & attendance manage kare
+
+3️⃣ Teacher Management
+Admin:
+
+Teacher create/edit/delete
+
+Subject assign kare
+
+Salary set kare
+
+Attendance view kare
+
+4️⃣ Attendance System
+Teacher:
+
+Daily attendance mark kare (Present / Absent)
+
+Admin:
+
+School attendance report dekh sakta hai
+
+Monthly attendance report
+
+Flow:
+Teacher → Select Class → Mark Attendance → Save → Report Generate
+
+5️⃣ Exam Management
+Admin:
+
+Exam create kare (Mid Term, Final)
+
+Exam schedule kare
+
+Teacher:
+
+Marks enter kare
+
+Result upload kare
+
+Student:
+
+Apna result dekhe
+
+Flow:
+Admin → Create Exam → Teacher Add Marks → Result Generate → Student View
+
+6️⃣ Fees System
+Accountant:
+
+Fees structure set kare
+
+Student fees receive kare
+
+Receipt generate kare
+
+Admin:
+
+Fees report dekhe
+
+Pending fees check kare
+
+Flow:
+Admin → Set Fees → Student Pay → Accountant Confirm → Receipt Generate
+
+7️⃣ Salary Management
+Admin:
+
+Teacher salary set kare
+
+Salary generate kare
+
+Payment record maintain kare
+
+Accountant:
+
+Salary payment update kare
+
+Flow:
+Admin → Set Salary → Accountant Pay → Record Update
+
+8️⃣ Reports Module
+
+Reports include:
+
+Student Performance Report
+
+Attendance Report
+
+Fees Report
+
+Salary Report
+
+Exam Result Report
+
+Admin sab dekh sakta hai.
+
+👨‍💼 Admin Powers (Clear Structure)
+
+Admin can:
+
+Manage Teachers (CRUD)
+
+Manage Students (CRUD)
+
+Manage Classes & Subjects
+
+Manage Exams
+
+View School Performance
+
+Manage Fees
+
+Manage Salary
+
+Create Notices
+
+View Attendance Reports
+
+👩‍🏫 Teacher Powers
+
+Teacher can:
+
+Login
+
+View Assigned Classes
+
+Mark Attendance
+
+Add Exam Marks
+
+View Student Performance
+
+View Own Salary
+
+View Notices
+
+👨‍🎓 Student Powers
+
+Student can:
+
+Login
+
+View Attendance
+
+View Results
+
+View Fees Status
+
+Download Report Card
+
+View Notices
+
+👨‍💰 Accountant Powers
+
+Manage Fees Collection
+
+Generate Receipts
+
+Manage Salary Payments
+
+Financial Reports
+
+🗂️ Database Basic Structure
+
+Tables idea:
+
+users
+
+roles
+
+classes
+
+subjects
+
+students
+
+teachers
+
+attendance
+
+exams
+
+marks
+
+fees
+
+salary
+
+notices
+
+🔄 Complete System Flow (Simple Version)
+Login →
+Role Check →
+Dashboard →
+Module Access →
+CRUD Operations →
+Reports Generate
+🚀 Pro Level Suggestion (Since you are building full project)
+
+Because tum backend + frontend dono kar rahe ho:
+
+Backend:
+
+NestJS (Controller → Service → Repository)
+
+JWT Auth
+
+Role Guards
+
+Frontend:
+
+Vue / React
+
+Sidebar role based
+
+Protected Routes
+
+Toast notifications
+
+Agar tum chaho to main:
+
+✅ Proper Database Schema design kar du
+
+✅ Complete API structure bana du
+
+✅ ER Diagram explain kar du
+
+✅ Professional project structure bana du (Production level)
+
+Batao next kya chahiye Mohit 😊

@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TeacherModule } from './teacher/teacher.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SubjectsModule } from './subjects/subjects.module';
+import { SchoolClassesModule } from './school-classes/school-classes.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     TeacherModule,
+    SubjectsModule,
+    SchoolClassesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

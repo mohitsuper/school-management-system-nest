@@ -9,7 +9,7 @@
         <!-- Logo + School Name -->
         <div class="flex items-center gap-3">
           <i class="pi pi-building text-2xl"></i>
-          <h1 class="text-xl font-bold">Scholar Public School</h1>
+          <h1 class="text-xl font-bold">International spaceX of coding</h1>
         </div>
       </div>
 

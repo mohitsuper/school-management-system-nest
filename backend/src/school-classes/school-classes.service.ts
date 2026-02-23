@@ -20,7 +20,7 @@ export class SchoolClassesService {
     const exits = await this.SchoolClassRep.find({
       where: { name: createSchoolClassDto.name },
     });
-    if (exits) {
+    if (exits.length >0) {
       throw new BadGatewayException('Class is a already exits');
     }
     const res = this.SchoolClassRep.create(createSchoolClassDto);

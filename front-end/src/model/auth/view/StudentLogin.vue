@@ -13,7 +13,7 @@
         <div class="mb-10 transform transition-all duration-1000 ease-out"
             :class="mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'">
           <div class="text-5xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
-            Scholar Public School
+            Inter national spaceX of coding
           </div>
           <p class="text-xl opacity-90 font-light">
             Smart School Management System

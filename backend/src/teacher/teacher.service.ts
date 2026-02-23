@@ -1,27 +1,49 @@
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Subject } from 'src/subjects/entities/subject.entity';
 
 @Injectable()
 export class TeacherService {
   constructor(
     @InjectRepository(Teacher)
     private readonly teacherRepository: Repository<Teacher>,
+
+    @InjectRepository(Subject)
+    private readonly subjectRep: Repository<Subject>,
   ) {}
+
   async create(createTeacherDto: CreateTeacherDto) {
-    const exits = await this.teacherRepository.findOne({
+    const exists = await this.teacherRepository.findOne({
       where: { email: createTeacherDto.email },
     });
-    if (exits) throw new BadGatewayException('This teacher is ready exits');
-    const teacher = this.teacherRepository.create(createTeacherDto);
+
+    if (exists) {
+      throw new BadGatewayException('Teacher already exists');
+    }
+
+    const subjects = await this.subjectRep.findBy({
+      id: In(createTeacherDto.subjectIds),
+    });
+
+    if (!subjects.length) {
+      throw new BadGatewayException('Subjects not found');
+    }
+
+    const teacher = this.teacherRepository.create({
+      name: createTeacherDto.name,
+      email: createTeacherDto.email,
+      subjects,
+    });
+
     return await this.teacherRepository.save(teacher);
   }
 
   async findAll() {
-    return await this.teacherRepository.find();
+    return await this.teacherRepository.find({ relations: ['subject'] });
   }
 
   async findOne(id: string) {

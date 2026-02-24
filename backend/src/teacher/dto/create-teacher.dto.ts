@@ -16,8 +16,8 @@ export class CreateTeacherDto {
   @IsString({ each: true })
   subjectIds: string[];
 
-  // @IsArray({ message: 'classIds must be an array' })
-  // @ArrayNotEmpty({ message: 'At least one class is required' })
-  // @IsString({ each: true })
-  // classIds: string[];
+  @IsArray({ message: 'classIds must be an array' })
+  @ArrayNotEmpty({ message: 'At least one class is required' })
+  @IsString({ each: true })
+  classIds: string[];
 }

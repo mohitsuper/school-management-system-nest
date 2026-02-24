@@ -1,4 +1,4 @@
-import { Teacher } from 'src/teacher/entities/teacher.entity';
+import { Teacher } from '../../teacher/entities/teacher.entity';
 import { Column, Entity, ManyToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('subject')
@@ -12,6 +12,6 @@ export class Subject {
   @Column()
   status?: boolean;
 
-  @ManyToMany(()=>Teacher,teacher=>teacher.subjects)
-  teacher?:Teacher
+  @ManyToMany(()=>Teacher,teachers=>teachers.subjects)
+  teachers?:Teacher[];
 }

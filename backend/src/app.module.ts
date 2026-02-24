@@ -21,7 +21,7 @@ import { SchoolClassesModule } from './school-classes/school-classes.module';
       password: '1234',
       database: 'school_management_system',
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
     }),
     TeacherModule,
     SubjectsModule,

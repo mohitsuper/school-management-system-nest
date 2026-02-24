@@ -4,7 +4,8 @@ import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { In, Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Subject } from 'src/subjects/entities/subject.entity';
+import { Subject } from '../subjects/entities/subject.entity';
+import { SchoolClass } from 'src/school-classes/entities/school-class.entity';
 
 @Injectable()
 export class TeacherService {
@@ -14,9 +15,13 @@ export class TeacherService {
 
     @InjectRepository(Subject)
     private readonly subjectRep: Repository<Subject>,
+
+    @InjectRepository(SchoolClass)
+    private readonly  classesRep: Repository<SchoolClass>
   ) {}
 
   async create(createTeacherDto: CreateTeacherDto) {
+    console.log("---",createTeacherDto.email)
     const exists = await this.teacherRepository.findOne({
       where: { email: createTeacherDto.email },
     });
@@ -29,21 +34,30 @@ export class TeacherService {
       id: In(createTeacherDto.subjectIds),
     });
 
+    const classes = await this.classesRep.findBy({
+      id: In(createTeacherDto.classIds)
+    })
+    console.log("subjects",subjects)
+
     if (!subjects.length) {
       throw new BadGatewayException('Subjects not found');
     }
 
+    if(!classes.length){
+       throw new BadGatewayException('Classes not found');
+    }
     const teacher = this.teacherRepository.create({
       name: createTeacherDto.name,
       email: createTeacherDto.email,
       subjects,
+      classes
     });
 
     return await this.teacherRepository.save(teacher);
   }
 
   async findAll() {
-    return await this.teacherRepository.find({ relations: ['subject'] });
+    return await this.teacherRepository.find({ relations: ['subjects'] });
   }
 
   async findOne(id: string) {

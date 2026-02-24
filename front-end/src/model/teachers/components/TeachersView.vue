@@ -9,7 +9,11 @@
     >
 
      <template #subject="{slotProps}">
-      {{ slotProps.data }}
+      <spna> {{ slotProps.data.subjects?.map((item:{name:string}) => item.name).join(', ') }}</spna>
+     </template>
+
+      <template #classes="{slotProps}">
+      <spna> {{ slotProps.data.classes?.map((item:{name:string}) => item.name).join(', ') }}</spna>
      </template>
     </DynamicDataTable>
 

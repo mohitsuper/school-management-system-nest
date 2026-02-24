@@ -2,7 +2,7 @@ export const TeacherColumns = [
   { field: "name", header: "Name" },
   { field: "email", header: "Email" },
   { field: "subjects", header: "subject",slot:"subject" },
-  { field: "classes", header: "class" },
+  { field: "classes", header: "class", slot:"classes" },
 ];
 
 export const ClassesColumns = [

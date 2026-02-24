@@ -56,9 +56,14 @@
       v-for="(col, index) in columns"
       :field="col.field"
       :header="col.header"
+      :key="index"
       >
 
-      <template> </template>
+      <template v-if="col.slot" #body="slotProps">
+        <slot :name="col.slot" :slotProps="slotProps">
+
+        </slot>
+       </template>
       </Column>
       <!-- <div v-for="(col, index) in columns">
         <Column

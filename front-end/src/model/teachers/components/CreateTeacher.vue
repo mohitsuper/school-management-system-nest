@@ -42,11 +42,32 @@
           <label class="mb-1 text-gray-600 font-medium" for="subject"
             >Subject</label
           >
-          <InputText
+          <MultiSelect
             id="subject"
-            v-model="form.subject"
+            :options="Subjects"
+            optionLabel="label"
+            optionValue="value"
+            v-model="form.subjectIds"
+            multiple
             placeholder="Enter subject"
-            class="p-inputtext p-component w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+            class="h-11 w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+          />
+        </div>
+
+
+         <div class="flex flex-col">
+          <label class="mb-1 text-gray-600 font-medium" for="subject"
+            >Class List</label
+          >
+          <MultiSelect
+             id="subject"
+            :options="Classes"
+            v-model="form.classIds"
+            optionLabel="label"
+            optionValue="value"
+            multiple
+            placeholder="Enter Class"
+            class=" h-11 p-component w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
         </div>
 
@@ -60,22 +81,29 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useTeachersStore } from "../store/TeachersStore";
+import MultiSelect from 'primevue/multiselect'
 const teacherStore = useTeachersStore();
 const router = useRouter();
 const form = reactive({
   name: "",
   email: "",
-  subject: "",
+  subjectIds: [],
+  classIds:[]
 });
-
-
+const Subjects = computed(()=>teacherStore.Subjects)
+const Classes= computed(()=>teacherStore.Classes)
 const handleSubmit = async () => {
   await teacherStore.createTeacher(form);
   router.push({name:'teachers.index'})
 };
+
+onMounted(async ()=>{
+  await teacherStore.fetchSubjects();
+  await teacherStore.fetchClasses();
+})
 </script>
 
 <style scoped>

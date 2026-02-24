@@ -10,5 +10,6 @@ export default new DataSource({
   database: 'school_management_system',
   entities: ['src/**/*.entity.ts'],
   migrations: ['src/migrations/*.ts'],
+  migrationsRun:true,
   synchronize: false,
 });

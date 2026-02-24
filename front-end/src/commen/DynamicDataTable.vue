@@ -7,7 +7,6 @@
           class="group flex items-center bg-white border rounded-lg px-3 border-gray-300 shadow-sm transition-all duration-300"
           :class="toggleSearch ? 'w-72' : 'w-10'"
         >
-
           <!-- Search Icon -->
           <i
             class="pi pi-search cursor-pointer text-gray-600 text-lg transition-transform duration-300 group-hover:scale-110"
@@ -33,7 +32,6 @@
             dropdownIcon="pi pi-ellipsis-h"
             class="py-3"
           >
-
             <template #option="slotProps">
               <i :class="slotProps.option.icon"></i>
               <span class="ml-2">{{ slotProps.option.name }}</span>
@@ -54,31 +52,39 @@
       v-model:selection="selectionData"
     >
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <div  v-for="(col, index) in columns">
-        <Column v-if="col.slot"
-        :key="index"
+      <Column 
+      v-for="(col, index) in columns"
+      :field="col.field"
+      :header="col.header"
+      >
+
+      <template> </template>
+      </Column>
+      <!-- <div v-for="(col, index) in columns">
+        <Column
+          v-if="col.slot"
+          :key="index"
           :field="col.field"
           :header="col.header"
         >
-  <template #body="slotProps">
-    <slot
-      :name="col.slot"
-      :data="slotProps.data"
-      :row="slotProps.data"
-    ></slot>
-  </template>
-      </Column>
+          <template #body="slotProps">
+            <slot
+              :name="col.slot"
+              :data="slotProps.data"
+              :row="slotProps.data"
+            ></slot>
+          </template>
+        </Column>
 
-        <Column 
+        <Column
+        
           :key="index"
           :field="col.field"
           :header="col.header"
           headerClass="bg-gray-100 text-gray-700 font-semibold text-sm uppercase tracking-wide"
           bodyClass="text-gray-600 text-sm py-3"
         />
-
-      </div>
-
+      </div> -->
 
       <template #paginatorstart>
         <span class="text-sm text-gray-500 font-medium">
@@ -104,13 +110,13 @@ import Column from "primevue/column";
 import InputText from "primevue/inputtext";
 import { Dropdown } from "primevue";
 
-const emit = defineEmits(['update:search','update:selectionData'])
+const emit = defineEmits(["update:search", "update:selectionData"]);
 
 const searchTerm = ref("");
 const handelSearch = (e: Event) => {
   const target = e.target as HTMLInputElement;
   searchTerm.value = target.value;
-  emit('update:search',target.value)
+  emit("update:search", target.value);
 };
 const selectAction = ref();
 const toggleSearch = ref<Boolean>(false);
@@ -119,14 +125,14 @@ const handletoogleSearch = () => {
 };
 
 const selectionData = ref<any>([]);
-watch(selectionData,(val)=>{
-  emit('update:selectionData',val)
-})
+watch(selectionData, (val) => {
+  emit("update:selectionData", val);
+});
 const props = defineProps<{
-  data: any[]
-  columns: any[]
-  actions: any[]
-}>()
+  data: any[];
+  columns: any[];
+  actions: any[];
+}>();
 const columns = computed(() => props.columns);
 
 watch(selectAction, (newAction) => {

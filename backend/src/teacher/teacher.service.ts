@@ -57,7 +57,7 @@ export class TeacherService {
   }
 
   async findAll() {
-    return await this.teacherRepository.find({ relations: ['subjects'] });
+    return await this.teacherRepository.find({ relations: ['subjects','classes'] });
   }
 
   async findOne(id: string) {

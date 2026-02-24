@@ -24,7 +24,6 @@ app.use(PrimeVue, {
 app.component('InputText',InputText)
 app.use(createPinia())
 app.use(ToastService);
-
 app.component("Toast", Toast);
 app.component("Dialog",Dialog)
 app.use(router);

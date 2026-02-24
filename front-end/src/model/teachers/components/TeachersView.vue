@@ -6,7 +6,12 @@
       :actions="actions"
       v-model:search="searchTerm"
       v-model:selectionData="selectValue"
-    />
+    >
+
+     <template #subject="{slotProps}">
+      {{ slotProps.data }}
+     </template>
+    </DynamicDataTable>
 
     <ConfirmDialog
     message="Are you sure you want to delete this teacher?"

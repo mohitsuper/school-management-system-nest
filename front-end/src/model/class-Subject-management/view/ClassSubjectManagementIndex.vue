@@ -3,7 +3,7 @@
     <div class="flex justify-between">
       <h2 class="header-heading">{{ currentTitle }}</h2>
       <Button
-        label="currentButton button"
+        :label="currentButton.button"
         class="!btn-primary"
         @click="router.push({ name: currentButton.router })"
       />
@@ -41,8 +41,8 @@ const tabs = ref(markRaw([
     name: "classlist.index",
     tabButton: "Classes list",
     component: ClassView,
-    button: "Create new teacher",
-    router: "create.teacher",
+    button: "Create new class",
+    router: "create.class",
   },
   {
     title: "Subject list",

@@ -13,7 +13,7 @@ export const ClassSubjectManagementRouter = [
     },
     {
         path:`/${adminHashKey}/class-create`,
-        name:'class-create',
+        name:'create.class',
         component:CreateClass,
         meta:{
             layout:true

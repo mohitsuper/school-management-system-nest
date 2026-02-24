@@ -115,7 +115,9 @@ export const useTeachersStore = defineStore("teachers", () => {
 
   const deleteTeacher = async (id: string) => {
     try {
-      await axiosInstance.patch(`/teacher/${id}`);
+      const res = await axiosInstance.delete(`/teacher/${id}`);
+      console.log(res,"res")
+      if(res.status === 200)
       toast.add({
         severity: "success",
         summary: "Success",
@@ -127,6 +129,7 @@ export const useTeachersStore = defineStore("teachers", () => {
         email: "",
         subject: "",
       };
+      await fetchTeachers();
     } catch (error) {
       AlertErrorToastmessage(toast, error);
     }

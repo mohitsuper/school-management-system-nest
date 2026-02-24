@@ -48,8 +48,10 @@ const columns = computed(() => TeacherColumns);
 const handledeleteDialog = async ()=>{
   deleteDialog.value = true;
 }
-const deleteData = async (id:string)=>{
+const deleteData = async ()=>{
+  const id = selectValue.value[0]?.id;
   await teachersStore.deleteTeacher(id)
+  deleteDialog.value = false
 }
 const actions = computed(() => {
   if (selectValue.value.length === 0 || selectValue.value.length >1) return [];
@@ -63,7 +65,7 @@ const actions = computed(() => {
           params: { id: selectValue?.value[0]?.id },
         }),
     },
-    { icon: "pi pi-trash", name: "Delete", value:handledeleteDialog() },
+    { icon: "pi pi-trash", name: "Delete", value:()=>handledeleteDialog() },
   ];
 });
 </script>

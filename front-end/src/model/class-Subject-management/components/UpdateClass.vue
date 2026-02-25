@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto px-6">
     <div class="flex justify-between items-center gap-2 mb-4">
-      <h2 class="header-heading">Create new class</h2>
+      <h2 class="header-heading">Update new class</h2>
       <Button
         label="Go back"
         icon="pi pi-arrow-left"
@@ -9,7 +9,6 @@
         @click="router.push({ name: 'class-subject-management' })"
       />
     </div>
-
     <div class="divider"></div>
 
     <div class="bg-white p-6 shadow-lg rounded-xl">
@@ -18,7 +17,7 @@
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium">Class name</label>
           <InputText
-            v-model="from.name"
+            v-model="classesShcema.name"
             placeholder="Enter class name"
             class="w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
@@ -28,7 +27,7 @@
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium">Room number</label>
           <InputText
-             v-model="from.room"
+             v-model="classesShcema.room"
             placeholder="Enter class room"
             class="w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
           />
@@ -37,37 +36,42 @@
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium">Status</label>
           <InputSwitch
-            v-model="from.status"
+            v-model="classesShcema.status"
           />
         </div>
       </form>
 
       <div class="flex w-full mt-6">
-        <Button label="Submit" type="submit" class="btn-primary" @click="handelCreateClass" />
+        <Button label="Submit" type="submit" class="btn-primary" @click="handelUpdateClass" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 // import InputSwitch from
 import InputSwitch from "primevue/inputswitch";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useClassStore } from "../store/ClassStore";
 const router = useRouter();
+const route = useRoute();
 const classStore = useClassStore();
-const from = ref({
-  name:'',
-  room:'',
-  status:false
-})
+const classesShcema = computed<{id:string,name:string,room:string,status:boolean}>(()=>classStore.classesShcema)
 
-const handelCreateClass = async()=>{
-  await classStore.createClass(from.value)
+
+
+const handelUpdateClass = async()=>{
+  await classStore.updateClass(classesShcema.value)
   router.push({ name: 'class-subject-management' })
 }
 
+
+onMounted(async()=>{
+    if(route.params.id){
+        await classStore.getClass(route.params.id)
+    }
+})
 </script>
 
 <style scoped>

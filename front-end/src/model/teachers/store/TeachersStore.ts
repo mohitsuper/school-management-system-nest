@@ -26,7 +26,9 @@ export const useTeachersStore = defineStore("teachers", () => {
   const Classes = ref<Classes[]>();
   const fetchTeachers = async () => {
     try {
-      const responce = await axiosInstance.get("/teacher");
+      const responce = await axiosInstance.get("/teacher",{
+        params:{status:true}
+      });
       teachers.value = responce.data || [];
     } catch (error) {
       AlertErrorToastmessage(toast, error);
@@ -35,7 +37,9 @@ export const useTeachersStore = defineStore("teachers", () => {
 
   const fetchSubjects = async () => {
     try {
-      const res = await axiosInstance.get("/subjects");
+      const res = await axiosInstance.get("/subjects",{
+        params:{status:true}
+      });
       console.log("res.data", res);
       Subjects.value = res.data.map((subject: { name: string; id: string }) => {
         return {
@@ -49,7 +53,9 @@ export const useTeachersStore = defineStore("teachers", () => {
   };
 
   const fetchClasses = async () => {
-    const res = await axiosInstance.get("/classes");
+    const res = await axiosInstance.get("/classes",{
+      params:{status:true}
+    });
     console.log("res.data", res);
     Classes.value = res.data.map((classes: { name: string; id: string }) => {
       return {

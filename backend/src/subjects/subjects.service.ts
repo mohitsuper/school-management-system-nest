@@ -22,8 +22,12 @@ export class SubjectsService {
     return await this.SubjectRepo.save(res);
   }
 
-  async findAll() {
-    return await this.SubjectRepo.find();
+  async findAll(status:boolean) {
+    let where:any = {}
+    if(status){
+      where.status=true
+    }
+    return await this.SubjectRepo.find({where});
   }
 
   async findOne(id: string) {

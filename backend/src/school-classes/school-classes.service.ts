@@ -27,8 +27,12 @@ export class SchoolClassesService {
     return await this.SchoolClassRep.save(res);
   }
 
-  async findAll() {
-    return await this.SchoolClassRep.find();
+  async findAll(status:boolean) {
+    let where:any = {};
+    if(status){
+      where.status = true
+    }
+    return await this.SchoolClassRep.find({where});
   }
 
   async findOne(id: string) {

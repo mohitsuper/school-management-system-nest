@@ -30,8 +30,8 @@
 <script setup>
 import { computed, markRaw, ref } from "vue";
 import { useRouter } from "vue-router";
-import SubjectView from "../../teachers/components/SubjectView.vue";
 import ClassView from "./ClassView.vue";
+import SubjectView from "./SubjectView.vue";
 const router = useRouter();
 
 const activeTab = ref("classlist.index");

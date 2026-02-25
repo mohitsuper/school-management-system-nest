@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto px-6">
     <div class="flex justify-between items-center gap-2 mb-4">
-      <h2 class="header-heading">Create new class</h2>
+      <h2 class="header-heading">Create new subject</h2>
       <Button
         label="Go back"
         icon="pi pi-arrow-left"
@@ -16,7 +16,7 @@
       <form class="grid md:grid-cols-2 gap-4">
         <!-- Name Field -->
         <div class="flex flex-col">
-          <label class="mb-1 text-gray-600 font-medium">Class name</label>
+          <label class="mb-1 text-gray-600 font-medium">Subject name</label>
           <InputText
             v-model="from.name"
             placeholder="Enter class name"
@@ -24,15 +24,7 @@
           />
         </div>
 
-        <!-- Email Field -->
-        <div class="flex flex-col">
-          <label class="mb-1 text-gray-600 font-medium">Room number</label>
-          <InputText
-             v-model="from.room"
-            placeholder="Enter class room"
-            class="w-full rounded-lg border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
-          />
-        </div>
+       
 
         <div class="flex flex-col">
           <label class="mb-1 text-gray-600 font-medium">Status</label>
@@ -54,19 +46,19 @@ import { useRouter } from "vue-router";
 // import InputSwitch from
 import InputSwitch from "primevue/inputswitch";
 import { onMounted, ref } from "vue";
-import { useClassStore } from "../store/ClassStore";
+import { useSubjectStore } from "../store/SubjectStore";
 const router = useRouter();
-const classStore = useClassStore();
+const subjectStore = useSubjectStore();
 const from = ref({
   name:'',
-  room:'',
   status:false
 })
 
 const handelCreateClass = async()=>{
-  await classStore.createClass(from.value)
+  await subjectStore.createSubject(from.value)
   router.push({ name: 'class-subject-management' })
 }
+
 
 </script>
 

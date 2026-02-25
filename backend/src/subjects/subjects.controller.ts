@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { SubjectsService } from './subjects.service';
 import { CreateSubjectDto } from './dto/create-subject.dto';
@@ -21,8 +22,8 @@ export class SubjectsController {
   }
 
   @Get()
-  async findAll() {
-    return await this.subjectsService.findAll();
+  async findAll(@Query('status') status:boolean) {
+    return await this.subjectsService.findAll(status);
   }
 
   @Get(':id')

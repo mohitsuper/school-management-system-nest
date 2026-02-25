@@ -10,3 +10,8 @@ export const ClassesColumns = [
   { field: "room", header: "room" },
   { field: "status", header: "status",slot:"status" },
 ]
+
+export const SubjectColumns = [
+   { field: "name", header: "Name" },
+  { field: "status", header: "status",slot:"status" },
+]

@@ -1,5 +1,4 @@
 import { adminHashKey } from "../../../commen/adminHashKey";
-import CreateSubject from "../components/CreateSubject.vue";
 import CreateTeacher from "../components/CreateTeacher.vue";
 import UpdateTeacher from "../components/UpdateTeacher.vue";
 import TeachersIndex from "../view/TeachersIndex.vue";
@@ -28,14 +27,6 @@ export const teachersRoute = [
         meta:{
             layout:true
         }
-    },
-    {
-        path:`/${adminHashKey}/create/subjects`,
-        name:'create.subject',
-        component:CreateSubject,
-        meta:{
-            layout:true
-        }
-    },
+    }
     
 ]

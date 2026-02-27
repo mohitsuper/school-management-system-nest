@@ -5,6 +5,7 @@ import  { adminDashboardRouter } from "../model/dashboard/router";
 import { authRouter } from "../model/auth/router";
 import { teachersRoute } from "../model/teachers/router";
 import { ClassSubjectManagementRouter } from "../model/class-Subject-management/router";
+import { teacherOnboardingRouter } from "../model/onboarding/router";
 
 const globleRoutes = [
     {
@@ -30,7 +31,8 @@ const routes = [
     ...adminDashboardRouter,
     ...authRouter,
     ...teachersRoute,
-    ...ClassSubjectManagementRouter
+    ...ClassSubjectManagementRouter,
+    ...teacherOnboardingRouter
 ]
 
 

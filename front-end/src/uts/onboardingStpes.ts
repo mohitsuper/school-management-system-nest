@@ -1,9 +1,13 @@
+import PersonalDetails from "../model/onboarding/components/PersonalDetails.vue";
+import AddressDetails from "../model/onboarding/components/AddressDetails.vue";
+import seleryDetails from '../model/onboarding/components/salaryDetails.vue'
 export const teacherOnboardingSteps = [
   {
     title: "Personal Details",
     icon: "pi pi-user",
     key: "personalDetails",
     description: "Basic information about the teacher including name, contact, and identity details.",
+    component:PersonalDetails,
     fields: [
       "Full Name",
       "Date of Birth",
@@ -18,6 +22,7 @@ export const teacherOnboardingSteps = [
     icon: "pi pi-home",
     key: "addressDetails",
     description: "Residential and permanent address details of the teacher.",
+    component:AddressDetails,
     fields: [
       "Current Address",
       "City",
@@ -32,6 +37,7 @@ export const teacherOnboardingSteps = [
     icon: "pi pi-wallet",
     key: "salaryDetails",
     description: "Compensation and banking details for salary processing.",
+    component:seleryDetails,
     fields: [
       "Employee ID",
       "Department",

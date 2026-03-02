@@ -1,7 +1,7 @@
 <template >
     <div class="bg-white px-8 pb-10 pt-8 rounded-2xl shadow-lg">
         <div class="grid md:grid-cols-2 gap-4">
-            <div class="flex flex-col gap-1" v-for="filed in AddressDetailsfileds">
+            <div class="flex flex-col gap-1" v-for="filed in documentfileds">
                 <label class="text-sm font-bold text-gray-800">{{ filed.label }}</label>
                 <InputText class="" :placeholder="filed.placeholder"/>
             </div>
@@ -14,11 +14,10 @@
 </template>
 <script setup>
 
-const AddressDetailsfileds = [
-    {label:'Address',placeholder:'Enter your address'},
-    {label:'State',placeholder:'Enter your Email state'},
-    {label:'Pincode',placeholder:'Enter your pincode'},
-    {label:'City',placeholder:'Enter your phone city'},
+const documentfileds = [
+    {label:'Aadhar number',placeholder:'Enter your aadhar number'},
+    {label:'Pan card number',placeholder:'Enter your pan card number'},
+    
 ]
 </script>
 <style >

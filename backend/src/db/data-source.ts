@@ -1,3 +1,4 @@
+import path from 'path';
 import { DataSource } from 'typeorm';
 
 
@@ -8,8 +9,8 @@ export default new DataSource({
   username: 'postgres',
   password: '1234',
   database: 'school_management_system',
-  entities: ['src/**/*.entity.ts'],
-  migrations: ['src/migrations/*.ts'],
+entities: [path.join(__dirname, '/../**/*.entity{.ts,.js}')],
+  migrations: [path.join(__dirname, '/../database/migration/*{.ts,.js}')],
   migrationsRun:true,
   synchronize: false,
 });

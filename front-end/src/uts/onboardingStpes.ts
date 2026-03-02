@@ -1,6 +1,7 @@
 import PersonalDetails from "../model/onboarding/components/PersonalDetails.vue";
 import AddressDetails from "../model/onboarding/components/AddressDetails.vue";
 import seleryDetails from '../model/onboarding/components/salaryDetails.vue'
+import DocumentDetails from "../model/onboarding/components/DocumentDetails.vue";
 export const teacherOnboardingSteps = [
   {
     title: "Personal Details",
@@ -8,14 +9,7 @@ export const teacherOnboardingSteps = [
     key: "personalDetails",
     description: "Basic information about the teacher including name, contact, and identity details.",
     component:PersonalDetails,
-    fields: [
-      "Full Name",
-      "Date of Birth",
-      "Gender",
-      "Phone Number",
-      "Email Address",
-      "Profile Photo"
-    ]
+    width:'20%'
   },
   {
     title: "Address Information",
@@ -23,14 +17,6 @@ export const teacherOnboardingSteps = [
     key: "addressDetails",
     description: "Residential and permanent address details of the teacher.",
     component:AddressDetails,
-    fields: [
-      "Current Address",
-      "City",
-      "State",
-      "Postal Code",
-      "Country",
-      "Permanent Address"
-    ]
   },
   {
     title: "Salary Details",
@@ -38,29 +24,12 @@ export const teacherOnboardingSteps = [
     key: "salaryDetails",
     description: "Compensation and banking details for salary processing.",
     component:seleryDetails,
-    fields: [
-      "Employee ID",
-      "Department",
-      "Designation",
-      "Basic Salary",
-      "Allowances",
-      "Bank Name",
-      "Account Number",
-      "IFSC Code"
-    ]
   },
   {
     title: "Documentation",
     icon: "pi pi-file",
     key: "documentation",
     description: "Upload and verify required official documents.",
-    fields: [
-      "ID Proof",
-      "Address Proof",
-      "Educational Certificates",
-      "Experience Certificates",
-      "Joining Letter",
-      "Contract Agreement"
-    ]
+    component:DocumentDetails
   }
 ];

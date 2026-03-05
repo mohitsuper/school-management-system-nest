@@ -5,13 +5,17 @@ import { UpdateTeacherOnboardingDto } from './dto/update-teacher-onboarding.dto'
 import { profileDetails } from './service/personalDetails.service';
 import { CreateProfiledetilsDto } from './dto/profile-details.dto';
 import { AddressDetailsService } from './service/AddressDetails.service';
+import { CreateTeacherAddressInfo } from './dto/address-details.dto';
+import { CreateSeleryInfo } from './dto/selery-details.dto';
+import { SeleryDetailsService } from './service/SeleryDetails.service';
 
 @Controller('teacher-onboarding')
 export class TeacherOnboardingController {
   constructor(
     private readonly teacherOnboardingService: TeacherOnboardingService, 
     private readonly profileDetailsService:profileDetails,
-    private readonly AddressDetailsService:AddressDetailsService
+    private readonly AddressDetailsService:AddressDetailsService,
+    private readonly SeleryDetailsService:SeleryDetailsService
 
   ) {}
   @Post()
@@ -25,9 +29,15 @@ export class TeacherOnboardingController {
   }
   
   @Post('/address')
-  createAddressInfo(@Body() CreateProfiledetilsDto:CreateProfiledetilsDto){
-    return this.AddressDetailsService.createAddress(CreateProfiledetilsDto)
+  createAddressInfo(@Body() CreateTeacherAddressInfo:CreateTeacherAddressInfo){
+    return this.AddressDetailsService.createAddress(CreateTeacherAddressInfo)
   }
+
+  @Post('/selery')
+  createSeleryInfo(@Body() CreateSeleryInfo:CreateSeleryInfo){
+    return this.SeleryDetailsService.create(CreateSeleryInfo)
+  }
+
   @Get()
   findAll() {
     return this.teacherOnboardingService.findAll();

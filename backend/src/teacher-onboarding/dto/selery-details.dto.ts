@@ -1,22 +1,19 @@
 import { isNotEmpty, IsNotEmpty, IsOptional } from "class-validator";
 
-export class CreateTeacherAddressInfo {
+export class CreateSeleryInfo {
     @IsOptional()
     id?:string
 
     @IsNotEmpty()
-    address:string
+    bankName:string
 
     @IsNotEmpty()
-    pincode:string
+    accountNumber:string
     
     @IsNotEmpty()
-    city:string
+    ifsc_code:string
 
     @IsNotEmpty()
-    state:string
-
-    @IsNotEmpty()
-    country:string
+    basicSelery:string
 
 }

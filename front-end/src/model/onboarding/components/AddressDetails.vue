@@ -19,6 +19,7 @@ const AddressDetailsfileds = [
     {label:'State',placeholder:'Enter your Email state'},
     {label:'Pincode',placeholder:'Enter your pincode'},
     {label:'City',placeholder:'Enter your phone city'},
+     {label:'Country',placeholder:'Enter your phone Country'},
 ]
 </script>
 <style >

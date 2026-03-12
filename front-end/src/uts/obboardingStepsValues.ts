@@ -1,6 +1,6 @@
 export const obboardingStepsValues =[
     "personalDetails",
     "addressDetails",
-    "salaryDetails",
+    "seleryDetails",
     "documentation"
 ]

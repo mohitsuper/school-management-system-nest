@@ -1,6 +1,6 @@
 import PersonalDetails from "../model/onboarding/components/PersonalDetails.vue";
 import AddressDetails from "../model/onboarding/components/AddressDetails.vue";
-import seleryDetails from '../model/onboarding/components/salaryDetails.vue'
+import seleryDetails from '../model/onboarding/components/seleryDetails.vue'
 import DocumentDetails from "../model/onboarding/components/DocumentDetails.vue";
 export const teacherOnboardingSteps = [
   {
@@ -21,7 +21,7 @@ export const teacherOnboardingSteps = [
   {
     title: "Salary Details",
     icon: "pi pi-wallet",
-    key: "salaryDetails",
+    key: "seleryDetails",
     description: "Compensation and banking details for salary processing.",
     component:seleryDetails,
   },

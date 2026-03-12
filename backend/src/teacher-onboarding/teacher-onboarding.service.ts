@@ -7,10 +7,18 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TeacherOnboardingService {
-  constructor(@InjectRepository(TeacherOnboarding) private readonly rep: Repository<TeacherOnboarding>){}
-  async createTeacherOnboarding(createTeacherOnboardingDto: CreateTeacherOnboardingDto) {
-    const res =  this.rep.create({
-      personalId:{id:createTeacherOnboardingDto?.personalId}
+  constructor(
+    @InjectRepository(TeacherOnboarding)
+    private readonly rep: Repository<TeacherOnboarding>,
+  ) {}
+  async createTeacherOnboarding(
+    createTeacherOnboardingDto: CreateTeacherOnboardingDto,
+  ) {
+    const res = this.rep.create({
+      personalId: { id: createTeacherOnboardingDto?.personalId },
+      addressId: { id: createTeacherOnboardingDto?.addressId },
+      seleryId: { id: createTeacherOnboardingDto?.seleryId },
+      documentId: { id: createTeacherOnboardingDto?.documentId },
     });
     return await this.rep.save(res);
   }

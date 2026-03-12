@@ -8,10 +8,13 @@ import { TeacherOnboarding } from './entities/teacher-onboarding.entity';
 import { AddressDetailsService } from './service/AddressDetails.service';
 import { addressDetailsEntity } from './entities/address-details.entity';
 import { SeleryDetailsService } from './service/SeleryDetails.service';
+import { seleryDetailsEntity } from './entities/selery-details.entity';
+import { DocumentDetailsService } from './service/DocumentDetails.service';
+import { documentDetailsEntity } from './entities/document-details.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([personalDetailsEntity,TeacherOnboarding,addressDetailsEntity])],
+  imports:[TypeOrmModule.forFeature([personalDetailsEntity,TeacherOnboarding,addressDetailsEntity,seleryDetailsEntity,documentDetailsEntity])],
   controllers: [TeacherOnboardingController],
-  providers: [TeacherOnboardingService,profileDetails,AddressDetailsService,SeleryDetailsService],
+  providers: [TeacherOnboardingService,profileDetails,AddressDetailsService,SeleryDetailsService,DocumentDetailsService],
 })
 export class TeacherOnboardingModule {}

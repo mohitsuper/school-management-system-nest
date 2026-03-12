@@ -22,36 +22,40 @@
   </div>
 </template>
 <script setup>
-import { onUnmounted, ref } from 'vue';
-import { useTeacherOnboardingStore } from '../store/TeacherOnboardingStore';
+import { onUnmounted, ref } from "vue";
+import { useTeacherOnboardingStore } from "../store/TeacherOnboardingStore";
 const TeacherOnboardingStore = useTeacherOnboardingStore();
 
 const form = ref({
-    address:'',
-    State:'',
-    pincode:'',
-    city:'',
-    country:''
-})
+  address: "",
+  state: "",
+  pincode: "",
+  city: "",
+  country: "",
+});
 const AddressDetailsfileds = [
-    {label:'Address',placeholder:'Enter your address',mode:'address'},
-    {label:'State',placeholder:'Enter your Email state',mode:'state'},
-    {label:'Pincode',placeholder:'Enter your pincode',mode:'pincode'},
-    {label:'City',placeholder:'Enter your phone city',mode:'city'},
-     {label:'Country',placeholder:'Enter your phone Country',mode:'country'},
-]
+  { label: "Address", placeholder: "Enter your address", mode: "address" },
+  { label: "State", placeholder: "Enter your Email state", mode: "state" },
+  { label: "Pincode", placeholder: "Enter your pincode", mode: "pincode" },
+  { label: "City", placeholder: "Enter your phone city", mode: "city" },
+  {
+    label: "Country",
+    placeholder: "Enter your phone Country",
+    mode: "country",
+  },
+];
 
-const handleSubmit = async ()=>{
-    await TeacherOnboardingStore.addressDetails(form.value)
-}
-onUnmounted(()=>{
-    form.value = {
-    address:'',
-    state:'',
-    pincode:'',
-    city:'',
-    country:''
-}
-})
+const handleSubmit = async () => {
+  await TeacherOnboardingStore.addressDetails(form.value);
+};
+onUnmounted(() => {
+  form.value = {
+    address: "",
+    state: "",
+    pincode: "",
+    city: "",
+    country: "",
+  };
+});
 </script>
 <style></style>

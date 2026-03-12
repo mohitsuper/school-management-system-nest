@@ -8,6 +8,8 @@ import { AddressDetailsService } from './service/AddressDetails.service';
 import { CreateTeacherAddressInfo } from './dto/address-details.dto';
 import { CreateSeleryInfo } from './dto/selery-details.dto';
 import { SeleryDetailsService } from './service/SeleryDetails.service';
+import { createDocumentDetailsDto } from './dto/document.details.dto';
+import { DocumentDetailsService } from './service/DocumentDetails.service';
 
 @Controller('teacher-onboarding')
 export class TeacherOnboardingController {
@@ -15,8 +17,8 @@ export class TeacherOnboardingController {
     private readonly teacherOnboardingService: TeacherOnboardingService, 
     private readonly profileDetailsService:profileDetails,
     private readonly AddressDetailsService:AddressDetailsService,
-    private readonly SeleryDetailsService:SeleryDetailsService
-
+    private readonly SeleryDetailsService:SeleryDetailsService,
+    private readonly DocumentDetailsService:DocumentDetailsService
   ) {}
   @Post()
   create(@Body() createTeacherOnboardingDto: CreateTeacherOnboardingDto) {
@@ -36,6 +38,12 @@ export class TeacherOnboardingController {
   @Post('/selery')
   createSeleryInfo(@Body() CreateSeleryInfo:CreateSeleryInfo){
     return this.SeleryDetailsService.create(CreateSeleryInfo)
+  }
+
+
+   @Post('/document')
+  createDocumentInfo(@Body() createDocumentDetailsDto:createDocumentDetailsDto){
+    return this.DocumentDetailsService.create(createDocumentDetailsDto)
   }
 
   @Get()

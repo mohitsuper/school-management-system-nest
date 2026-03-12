@@ -1,5 +1,7 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { personalDetailsEntity } from "./personal-details.entity";
+import { addressDetailsEntity } from "./address-details.entity";
+import { seleryDetailsEntity } from "./selery-details.entity";
 
 @Entity('teacher_onboaring')
 export class TeacherOnboarding {
@@ -12,4 +14,20 @@ export class TeacherOnboarding {
     })
     @JoinColumn()
     personalId?:personalDetailsEntity
+
+
+    @OneToOne(()=>addressDetailsEntity,{
+        cascade:true,
+        nullable:true
+    })
+    @JoinColumn()
+    addressId?:addressDetailsEntity
+
+
+     @OneToOne(()=>seleryDetailsEntity,{
+        cascade:true,
+        nullable:true
+    })
+    @JoinColumn()
+    seleryId?:seleryDetailsEntity
 }

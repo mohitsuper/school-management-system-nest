@@ -4,7 +4,7 @@ import { useToast } from "primevue/usetoast";
 import { onMounted, ref, watch } from "vue";
 
 export const useTeacherOnboardingStore = defineStore('teacherOnboarding', () => {
-    const obboardingStep = ref('')
+    const obboardingStep = ref('personalDetails')
     const toast = useToast();
 
     const personalDetails = async (data: any) => {
@@ -59,7 +59,7 @@ export const useTeacherOnboardingStore = defineStore('teacherOnboarding', () => 
                     detail: 'Address details added successfully',
                     life: 3000
                 })
-                obboardingStep.value = 'documentation'
+                obboardingStep.value = 'salaryDetails'
             }
 
             return res;
@@ -91,19 +91,29 @@ export const useTeacherOnboardingStore = defineStore('teacherOnboarding', () => 
         }
     }
 
+
+    const seleryDetails = async (data:any)=>{
+        try{}
+        catch(error){
+
+        }
+    }
+
     watch(obboardingStep,(Newval)=>{
         localStorage.setItem('obboardingStep',Newval)
     })
     onMounted(()=>{
         const localStepVal = localStorage.getItem('obboardingStep')
         if(localStepVal){
+            console.log('local',localStepVal)
             obboardingStep.value = localStepVal
         }
-        obboardingStep.value = 'personalDetails'
+        // obboardingStep.value = 'personalDetails'
     })
     return {
         personalDetails,
         obboardingStep,
-        addressDetails
+        addressDetails,
+        seleryDetails
     }
 })

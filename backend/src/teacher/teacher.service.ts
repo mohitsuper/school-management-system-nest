@@ -1,11 +1,12 @@
 import { BadGatewayException, Injectable } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
-import { In, Repository } from 'typeorm';
+import { ILike, In, Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Subject } from '../subjects/entities/subject.entity';
 import { SchoolClass } from 'src/school-classes/entities/school-class.entity';
+import { PaginationDto } from 'src/commen/Paginations';
 
 @Injectable()
 export class TeacherService {
@@ -56,8 +57,29 @@ export class TeacherService {
     return await this.teacherRepository.save(teacher);
   }
 
-  async findAll() {
-    return await this.teacherRepository.find({ relations: ['subjects','classes'] });
+  async findAll(searchTerm:string,pageDto:PaginationDto) {
+    const {page,limit}= pageDto;
+
+    console.log('aa',pageDto)
+    const query = await this.teacherRepository.createQueryBuilder('teacher')
+    .leftJoinAndSelect('teacher.subjects','subjects')
+    .leftJoinAndSelect('teacher.classes','classes')
+    if(searchTerm){
+      query.where(`teacher.name LIKE :search OR
+        subjects.name LIKE :search`,{search: `%${searchTerm}%`});
+    }
+    const [data, total] = await query
+    .skip((page - 1) * limit)
+    .take(limit)
+    .getManyAndCount();
+
+  return {
+    data,
+    total,
+    page,
+    totalPage: Math.ceil(total / limit),
+  };
+    // return await this.teacherRepository.find({ relations: ['subjects','classes'] });
   }
 
   async findOne(id: string) {

@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { TeacherService } from './teacher.service';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { PaginationDto } from 'src/commen/Paginations';
 
 @Controller('teacher')
 export class TeacherController {
@@ -23,8 +25,8 @@ export class TeacherController {
   }
 
   @Get()
-  findAll() {
-    return this.teacherService.findAll();
+  findAll(@Query('searchTerm') searchTerm:string, @Query() page:PaginationDto) {
+    return this.teacherService.findAll(searchTerm,page);
   }
 
   @Get(':id')

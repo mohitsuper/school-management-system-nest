@@ -1,19 +1,21 @@
 <template>
   <div>
+    {{ searchTerm }}
     <DynamicDataTable
       :data="teachers"
       :columns="columns"
       :actions="actions"
-      v-model:search="searchTerm"
+      :v-model:search="searchTerm"
       v-model:selectionData="selectValue"
+      
     >
 
      <template #subject="{slotProps}">
-      <spna> {{ slotProps.data.subjects?.map((item:{name:string}) => item.name).join(', ') }}</spna>
+      <span> {{ slotProps.data.subjects?.map((item:{name:string}) => item.name).join(', ') }}</span>
      </template>
 
       <template #classes="{slotProps}">
-      <spna> {{ slotProps.data.classes?.map((item:{name:string}) => item.name).join(', ') }}</spna>
+      <span> {{ slotProps.data.classes?.map((item:{name:string}) => item.name).join(', ') }}</span>
      </template>
     </DynamicDataTable>
 
@@ -39,6 +41,10 @@ const teachers = computed(() => teachersStore.teachers);
 const route = useRouter();
 const searchTerm = ref("");
 const selectValue = ref<Teacher[]>([]);
+const handleSearch = async (val:string) =>{
+  console.log('val',val)
+  await teachersStore.fetchTeachers(val);
+}
 onMounted(async () => {
   await teachersStore.fetchTeachers();
 });

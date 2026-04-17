@@ -60,25 +60,13 @@
       >
 
       <template v-if="col.slot" #body="slotProps">
-        <slot :name="col.slot" :slotProps="slotProps">
+        <slot :name="col.slot" :slotProps="slotProps"> 
         </slot>
        </template>
       </Column>
      
 
-      <template #paginatorstart>
-        <span class="text-sm text-gray-500 font-medium">
-          <!-- Total: {{ data.length }} records -->
-        </span>
-      </template>
-
-      <template #paginatorend>
-        <button
-          class="ml-4 px-3 py-1 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-        >
-          Custom Btn
-        </button>
-      </template>
+      
     </DataTable>
   </div>
 </template>

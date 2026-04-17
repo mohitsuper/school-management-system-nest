@@ -24,12 +24,12 @@ export const useTeachersStore = defineStore("teachers", () => {
   });
   const Subjects = ref<Subjects[]>();
   const Classes = ref<Classes[]>();
-  const fetchTeachers = async () => {
+  const fetchTeachers = async (searchTerm?:string, page:number = 1) => {
     try {
       const responce = await axiosInstance.get("/teacher",{
-        params:{status:true}
+        params:{page,limit:2,searchTerm}
       });
-      teachers.value = responce.data || [];
+      teachers.value = responce.data.data || [];
     } catch (error) {
       AlertErrorToastmessage(toast, error);
     }
